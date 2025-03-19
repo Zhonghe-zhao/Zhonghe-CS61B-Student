@@ -5,17 +5,19 @@ import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class BeeCountingStage implements AdventureStage {
     private static final int[] SOME_NEAT_NUMBERS = {5, 3, 2, 6, 7};
 
     private final In in;
     private final Map<String, AdventureStage> responses;
-    private List<String> input;
+    private final List<String> input;
 
     public BeeCountingStage(In in) {
         this.in = in;
         this.responses = Map.of("go", new SpeciesListStage(in));
+        this.input = new ArrayList<>(); // 在构造函数中初始化
     }
 
     /**
@@ -83,7 +85,7 @@ public class BeeCountingStage implements AdventureStage {
      */
     private int sumInput() {
         int sum = 0;
-        for (int i = 0; i <= this.input.size(); i++) {
+        for (int i = 0; i < this.input.size(); i++) {
             sum += Integer.parseInt(this.input.get(i));
         }
         return sum;
